@@ -1,0 +1,67 @@
+managed implementation in class zbp_i_header_heraf unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZI_HEADER_HERAF alias Header
+persistent table ztheader_heraf
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedBy, CreatedAt;
+  field ( mandatory : create ) id;
+  //field ( features : instance ) id;
+
+  association _Items { create ( features : instance ); }
+  mapping for ztheader_heraf
+    {
+      Id            = id;
+      Email         = email;
+      FirstName     = firstname;
+      LastName      = lastname;
+      Country       = country;
+      CreateOn      = createon;
+      DeliveryDate  = deliverydate;
+      OrderStatus   = orderstatus;
+      ImageUrl      = imageurl;
+      CreatedBy     = createdby;
+      CreatedAt     = createdat;
+      LastChangedBy = lastchangedby;
+      LastChangedAt = lastchangedat;
+    }
+}
+
+define behavior for ZI_ITEMS_HERAF alias Items
+persistent table zitems_heraf
+lock dependent by _Header
+authorization dependent by _Header
+etag master LastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly ) Idit, Idhe;
+
+  association _Header;
+  mapping for zitems_heraf
+    {
+      Idit             = idit;
+      idhe             = idhe;
+      Name             = name;
+      Description      = description;
+      ReleaseDate      = releasedate;
+      DiscontinuedDate = discontinueddate;
+      Price            = price;
+      CurrencyCode     = currencycode;
+      Height           = height;
+      Width            = width;
+      Depth            = depth;
+      Quantity         = quantity;
+      UnitOfMeasure    = unitofmeasure;
+      LastChangedAt    = lastchangedat;
+
+    }
+}

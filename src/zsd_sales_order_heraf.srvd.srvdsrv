@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition - Sales Order'
+define service ZSD_SALES_ORDER_HERAF {
+  expose ZI_HEADER_HERAF as Header;
+  expose Z_C_ITEMS_HERAF as Items;
+  expose I_Currency      as Currency;
+}
