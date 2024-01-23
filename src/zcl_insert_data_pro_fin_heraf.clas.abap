@@ -92,6 +92,17 @@ CLASS zcl_insert_data_pro_fin_heraf IMPLEMENTATION.
     ls_header-imageurl     = 'http://dummyimage.com/150x100.png/5fa2dd/ffffff'.
     APPEND ls_header TO lt_header.
 
+    ls_header-id           = '7'.
+    ls_header-email        = 'aaaaaa@aaa.com'.
+    ls_header-firstname    = 'Borja'.
+    ls_header-lastname     = 'de las Heras'.
+    ls_header-country      = 'Italia'.
+    ls_header-createon     = cl_abap_context_info=>get_system_date( ).
+    ls_header-deliverydate = '20240530'.
+    ls_header-orderstatus  = '002'.
+    ls_header-imageurl     = ''.
+    APPEND ls_header TO lt_header.
+
     INSERT ztheader_heraf FROM TABLE @lt_header.
 
     ls_items-idit             = '1'.
@@ -175,6 +186,20 @@ CLASS zcl_insert_data_pro_fin_heraf IMPLEMENTATION.
     ls_items-width            = '10'.
     ls_items-depth            = '20'.
     ls_items-quantity         = '5'.
+    ls_items-unitofmeasure    = 'KG'.
+    APPEND ls_items TO lt_items.
+
+    ls_items-idit             = '7'.
+    ls_items-idhe             = '7'.
+    ls_items-name             = '12345'.
+    ls_items-description      = 'Pollo con patatas'.
+    ls_items-releasedate      = '20240123'.
+    ls_items-discontinueddate = '20240530'.
+    ls_items-price            = '2'.
+    ls_items-height           = '2'.
+    ls_items-width            = '2'.
+    ls_items-depth            = '2'.
+    ls_items-quantity         = '2'.
     ls_items-unitofmeasure    = 'KG'.
     APPEND ls_items TO lt_items.
 
